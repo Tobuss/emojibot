@@ -1,0 +1,18 @@
+{
+  "name": "EmojiBotIBM",
+  "main": "index.js",
+  "description": "",
+  "version": "0.1",
+  "private": false,
+  "engines": {
+    "node": "6.*"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^11.2.x"
+  },
+  "author": "zeue",
+  "license": "mit"
+}
