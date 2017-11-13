@@ -16,7 +16,7 @@ bot.on('message', message => {
   request.post(
     'https://zeue.eu/api/emojibot.php',
     { json: { msg: message.content } },
-    function (error, , body) {
+    function (error, response, body) {
       if (!error && response.statusCode == 200) {
         try {message.channel.send(body);} catch(error) {return;};
       }
