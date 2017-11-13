@@ -11,8 +11,8 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "mysql": "^2.16.x",
-    "discord.js": "^11.2.x"
+    "request": "2.83.0",
+    "discord.js": "11.2.0"
   },
   "author": "zeue",
   "license": "mit"
