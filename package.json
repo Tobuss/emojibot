@@ -2,7 +2,7 @@
   "name": "EmojiBotIBM",
   "main": "index.js",
   "description": "",
-  "version": "0.1",
+  "version": "0.1.0",
   "private": false,
   "engines": {
     "node": "6.*"
