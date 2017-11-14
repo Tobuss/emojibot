@@ -11,8 +11,9 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "request": "2.83.0",
-    "discord.js": "11.2.0"
+    "request": "^2.83.x",
+    "discord.js": "^11.2.x",
+    "express": "^4.15.x"
   },
   "author": "zeue",
   "license": "mit"
