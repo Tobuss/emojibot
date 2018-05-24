@@ -25,7 +25,7 @@ bot.on('message', message => {
             break;
         case "asl" :
             let [age, sex, location] = args;
-            message.reply(`Hello ${message.author.username}, I see you're a ${age} year old ${sex} from ${location}. Wanna date?`);
+            message.channel.send(`Hello ${message.author.username}, I see you're a ${age} year old ${sex} from ${location}. Wanna date?`);
             break;
         default:
             if(responseObject[message.content]) {
