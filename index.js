@@ -29,7 +29,7 @@ bot.on('message', message => {
             message.channel.send(`Hello ${message.author.username}, I see you're a ${age} year old ${sex} from ${location}. Wanna date?`);
             break;
         case "add":
-            if (message.author in config.adminArr || message.author === config.owner) {
+            if (message.author.id === config.owner) {
                 let responses = JSON.parse(fs.readFileSync("./responses.json", "utf8"));
                 let [trigger, response] = args;
                 responses[trigger] = response;
@@ -39,8 +39,8 @@ bot.on('message', message => {
             }
             break;
         default:
-            if(responseObject[message.content]) {
-                message.channel.send(responseObject[message.content]);
+            if(responseObject[command]) {
+                message.channel.send(responseObject[command]);
             }
             break;
     }
