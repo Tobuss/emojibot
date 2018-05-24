@@ -42,8 +42,8 @@ bot.on('message', message => {
             let responses = JSON.parse(fs.readFileSync("./responses.json", "utf8"));
             let keys = [];
             for(let k in responses) keys.push(k);
-            keys.toString();
-            message.channel.send("`"+keys+"`");
+            let keyString = keys.join(", ");
+            message.channel.send("`"+keyString+"`");
             break;
         default:
             if(responseObject[command]) {
