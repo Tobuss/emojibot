@@ -11,8 +11,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "discord.js": "^11.2.x",
-    "lokijs": "^1.5.x"
+    "discord.js": "^11.2.x"
   },
   "author": "zeue",
   "license": "unlicense"
