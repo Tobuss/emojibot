@@ -1,8 +1,8 @@
 {
-  "name": "EmojiBotIBM",
+  "name": "EmojiBot",
   "main": "index.js",
-  "description": "",
-  "version": "0.1.0",
+  "description": "The memes must flow...",
+  "version": "3.0.0",
   "private": false,
   "engines": {
     "node": "6.*"
@@ -11,10 +11,9 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "request": "^2.83.x",
     "discord.js": "^11.2.x",
-    "express": "^4.15.x"
+    "lokijs": "^1.5.4"
   },
   "author": "zeue",
-  "license": "mit"
+  "license": "unlicense"
 }
