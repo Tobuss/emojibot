@@ -2,6 +2,7 @@ const config = require("./config.json");
 const responseObject = require("./responses.json")
 
 const Discord = require("discord.js");
+const fs = require("fs");
 
 const bot = new Discord.Client();
 
@@ -20,12 +21,22 @@ bot.on('message', message => {
     const command = args.shift().toLowerCase();
   
     switch (command) {
-        case "ping" :
+        case "ping":
             message.channel.send('Pong!');
             break;
-        case "asl" :
+        case "asl":
             let [age, sex, location] = args;
             message.channel.send(`Hello ${message.author.username}, I see you're a ${age} year old ${sex} from ${location}. Wanna date?`);
+            break;
+        case "add":
+            if (message.author in config.adminArr || message.author === config.owner) {
+                let responses = JSON.parse(fs.readFileSync("./responses.json", "utf8"));
+                let [trigger, response] = args;
+                responses[trigger] = response;
+                fs.writeFile("./responses.json", JSON.stringify(responses), (err) => {
+                    if (err) console.error(err);
+                });
+            }
             break;
         default:
             if(responseObject[message.content]) {
