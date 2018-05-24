@@ -1,29 +1,33 @@
-const express = require("express");
+// CONFIGURATION
+const token = 'TOKEN_HERE';
+const owner = "101435120161927168";
+const adminArr = [
+    "165571041433878529"
+];
+
+// APPLICATION
 const Discord = require("discord.js");
-const request = require("request");
-var app = express();
 const bot = new Discord.Client();
-const token = 'MzM5MTExNTMzODIzMDAwNTc3.DFf7ww.cCYB6D7pExxX73QPE0FKkXgPeys';
 
 bot.on('ready', () => {
-  console.log('emoji-bot.js is ready!');
+  console.log('EmojiBot is ready!');
 });
 
 bot.on('message', message => {
 
   if (message.author.bot) return;
 
-  request.get(
-    'http://zeue.eu/api/emojibot.php?msg='+message.content,
-    function (error, response, body)
-    {
-      if (!error && response.statusCode == 200) {try {message.channel.send(body);} catch(error) {return;};}
-    }
-  );
+  // prepare message for checks, if input is "!cmd arg1 arg2 arg3" it returns: 
+    // command["cmd"]
+    // args["arg1", "arg2", "arg3"]
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
+  
+  // test command
+  if (command == "") {
+      //...
+  }
 
 });
 
 bot.login(token);
-
-var port = process.env.PORT || 3000
-app.listen(port, function() {});
