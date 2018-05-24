@@ -17,7 +17,7 @@ bot.on('message', message => {
     // prepare message for checks, if input is "!cmd arg1 arg2 arg3" it returns: 
         // command["cmd"]
         // args["arg1", "arg2", "arg3"]
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
   
     switch (command) {
