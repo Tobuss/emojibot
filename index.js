@@ -1,16 +1,9 @@
 const config = require("./config.json");
+const responseObject = require("./responses.json")
 
 const Discord = require("discord.js");
-const fs = require('fs');
 
 const bot = new Discord.Client();
-
-// check if json file exists, create if not
-if (fs.existsSync("./store.json")) {
-    //...
-} else {
-    //...
-}
 
 bot.on('ready', () => {
     console.log('EmojiBot is ready!');
@@ -27,13 +20,18 @@ bot.on('message', message => {
     const command = args.shift().toLowerCase();
   
     switch (command) {
-      case "ping" :
-        message.channel.send('Pong!');
-        break;
-      case "asl" :
-        let [age, sex, location] = args;
-        message.reply(`Hello ${message.author.username}, I see you're a ${age} year old ${sex} from ${location}. Wanna date?`);
-        break;
+        case "ping" :
+            message.channel.send('Pong!');
+            break;
+        case "asl" :
+            let [age, sex, location] = args;
+            message.reply(`Hello ${message.author.username}, I see you're a ${age} year old ${sex} from ${location}. Wanna date?`);
+            break;
+        default:
+            if(responseObject[message.content]) {
+                message.channel.send(responseObject[message.content]);
+            }
+            break;
     }
 
 });
