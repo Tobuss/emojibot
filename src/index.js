@@ -12,7 +12,13 @@ bot.on('ready', () => {
 
 bot.on('message', message => {
 
-    if (message.author.bot || !message.content.startsWith(config.prefix)) return;
+    if (message.author.bot) return;
+    
+    if (message.content === "meme") {
+        message.channel.send("meme");
+    }
+    
+    if (!message.content.startsWith(config.prefix)) return;
     
     // prepare message for checks, if input is "!cmd arg1 arg2 arg3" it returns: 
         // command["cmd"]
@@ -32,7 +38,18 @@ bot.on('message', message => {
             if (message.author.id === config.owner) {
                 let responses = JSON.parse(fs.readFileSync("./responses.json", "utf8"));
                 let [trigger, response] = args;
-                responses[trigger] = response;
+                let triggerFinal = trigger.toLowerCase();
+                responses[triggerFinal] = response;
+                fs.writeFile("./responses.json", JSON.stringify(responses), (err) => {
+                    if (err) console.error(err);
+                });
+            }
+            break;
+        case "delete":
+            if (message.author.id === config.owner) {
+                let responses = JSON.parse(fs.readFileSync("./responses.json", "utf8"));
+                let [trigger] = args;
+                delete responses[trigger];
                 fs.writeFile("./responses.json", JSON.stringify(responses), (err) => {
                     if (err) console.error(err);
                 });
