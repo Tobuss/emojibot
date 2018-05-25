@@ -49,7 +49,11 @@ bot.on('message', message => {
                 let triggerFinal = trigger.toLowerCase();
                 responses[triggerFinal] = response;
                 fs.writeFile("./responses.json", JSON.stringify(responses), (err) => {
-                    if (err) console.error(err);
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        message.channel.send(triggerFinal+" added!");
+                    }
                 });
             }
             break;
@@ -59,7 +63,11 @@ bot.on('message', message => {
                 let [trigger] = args;
                 delete responses[trigger];
                 fs.writeFile("./responses.json", JSON.stringify(responses), (err) => {
-                    if (err) console.error(err);
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        message.channel.send(trigger+" removed!");
+                    }
                 });
             }
             break;
