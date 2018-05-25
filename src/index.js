@@ -25,6 +25,14 @@ bot.on('message', message => {
         // args["arg1", "arg2", "arg3"]
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
+
+    if (message.author.id === config.owner) {
+        let authLevel = 2;
+    } else if (message.author.id in config.admins) {
+        let authLevel = 1;
+    } else {
+        let authLevel = 0;
+    }
   
     switch (command) {
         case "ping":
@@ -35,7 +43,7 @@ bot.on('message', message => {
             message.channel.send(`Hello ${message.author.username}, I see you're a ${age} year old ${sex} from ${location}. Wanna date?`);
             break;
         case "add":
-            if (message.author.id === config.owner) {
+            if (authLevel >= 1) {
                 let responses = JSON.parse(fs.readFileSync("./responses.json", "utf8"));
                 let [trigger, response] = args;
                 let triggerFinal = trigger.toLowerCase();
@@ -46,7 +54,7 @@ bot.on('message', message => {
             }
             break;
         case "delete":
-            if (message.author.id === config.owner) {
+            if (authLevel >= 2) {
                 let responses = JSON.parse(fs.readFileSync("./responses.json", "utf8"));
                 let [trigger] = args;
                 delete responses[trigger];
